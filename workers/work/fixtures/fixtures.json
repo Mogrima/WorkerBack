@@ -1,0 +1,114 @@
+[
+  {
+    "model": "work.Workers",
+    "pk": 1,
+    "fields": {
+      "name": "Джордж Вашингтон",
+      "companyName": "ООО \"Синергия\"",
+      "position_name": "Первый президент США",
+      "hire_date": "1789-04-30",
+      "fire_date": "1797-03-04",
+      "salary": 1000,
+      "fraction": 100,
+      "base": 1000,
+      "advance": 1000,
+      "by_hours": false
+    }
+  },
+  {
+    "model": "work.Workers",
+    "pk": 2,
+    "fields": {
+      "name": "Ричард I Львиное Сердце",
+      "companyName": "ООО \"Синергия\"",
+      "position_name": "Король Англии",
+      "hire_date": "1189-01-01",
+      "fire_date": "1199-05-17",
+      "salary": 1000,
+      "fraction": 100,
+      "base": 1000,
+      "advance": 1000,
+      "by_hours": true
+    }
+  },
+  {
+    "model": "work.Workers",
+    "pk": 3,
+    "fields": {
+      "name": "Джейсон Стейтем",
+      "companyName": "ООО \"Синергия\"",
+      "position_name": "Бейкон",
+      "hire_date": "1998-09-01",
+      "fire_date": null,
+      "salary": 1000,
+      "fraction": 100,
+      "base": 1000,
+      "advance": 1000,
+      "by_hours": false
+    }
+  },
+  {
+    "model": "work.Workers",
+    "pk": 4,
+    "fields": {
+      "name": "Тарантино К. Дж.",
+      "companyName": "ООО \"Синергия\"",
+      "position_name": "Джимми",
+      "hire_date": "1994-04-15",
+      "fire_date": null,
+      "salary": 1000,
+      "fraction": 100,
+      "base": 1000,
+      "advance": 1000,
+      "by_hours": false
+    }
+  },
+  {
+    "model": "work.Workers",
+    "pk": 5,
+    "fields": {
+      "name": "Камбербэтч Б.",
+      "companyName": "ООО \"Синергия\"",
+      "position_name": "Смауг",
+      "hire_date": "1000-01-01",
+      "fire_date": "2941-10-09",
+      "salary": 1000,
+      "fraction": 100,
+      "base": 1000,
+      "advance": 1000,
+      "by_hours": false
+    }
+  },
+  {
+    "model": "work.Workers",
+    "pk": 6,
+    "fields": {
+      "name": "Крузенштерн И. Ф.",
+      "companyName": "ООО \"Синергия\"",
+      "position_name": "Человек и пароход",
+      "hire_date": "1770-11-08",
+      "fire_date": null,
+      "salary": 1000,
+      "fraction": 100,
+      "base": 1000,
+      "advance": 1000,
+      "by_hours": false
+    }
+  },
+  {
+    "model": "work.Workers",
+    "pk": 7,
+    "fields": {
+      "name": "Бендер С. Р.",
+      "companyName": "\"Planet Express\"",
+      "position_name": "Робот-сгибальщик",
+      "hire_date": "2997-03-27",
+      "fire_date": null,
+      "salary": 1000,
+      "fraction": 100,
+      "base": 1000,
+      "advance": 1000,
+      "by_hours": true
+    }
+  }
+]
