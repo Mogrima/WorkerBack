@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'graphene_django',
     'work.apps.WorkConfig',
     'listWorkers.apps.ListworkersConfig',
     'django.contrib.admin',
@@ -114,6 +115,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+GRAPHENE = {  
+    'SCHEMA': 'workers.schema.schema'
+}
 
 
 # Static files (CSS, JavaScript, Images)
