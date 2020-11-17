@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'graphene_django',
     'work.apps.WorkConfig',
+    'corsheaders',
     'listWorkers.apps.ListworkersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -120,6 +122,9 @@ GRAPHENE = {
     'SCHEMA': 'workers.schema.schema'
 }
 
+CORS_ORIGIN_WHITELIST = [
+ 'http://localhost:8080'
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

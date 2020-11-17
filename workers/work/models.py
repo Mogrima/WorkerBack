@@ -6,35 +6,6 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
-# type Workers {
-#   name: String!,
-#   companyName: String!,
-#   positionName: String!,
-#   hireDate: Date!,
-#   fireDate: Date,
-#   salary: Int!,
-#   fraction: Int!,
-#   base: Int!,
-#   advance: Int!,
-#   by_hours: Boolean!
-# }
-
-# type Query {  
-#   actor(id: ID!): Actor
-#   actors: [Actor]
-# }
-
-# input WorkersInput {
-#     id: ID
-#     name: String!
-# }
-
-# type  WorkersPayload {  
-#   ok: Boolean
-#   work: Workers
-# }
-
-
 class Workers(models.Model):
     name = models.CharField(max_length=200)
     companyName = models.CharField(max_length=100)

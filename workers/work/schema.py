@@ -1,78 +1,11 @@
 import graphene
 from graphene_django.types import DjangoObjectType, ObjectType
-# from graphene_django.types import DjangoObjectType
 from work.models import Workers
-from graphene_django.filter import DjangoFilterConnectionField
 
 
 class OccupationType(DjangoObjectType):
     class Meta:
         model = Workers
-
-
-class WorkersInput(graphene.InputObjectType):
-    name = graphene.String(required=True, null=False)
-    companyName = graphene.String(required=True)
-    position_name = graphene.String(required=True)
-    hireDate = graphene.Date(required=True)
-    fireDate = graphene.Date()
-    salary = graphene.Int(required=True)
-    fraction = graphene.Int(required=True)
-    base = graphene.Int(required=True)
-    advance = graphene.Int(required=True)
-    by_hours = graphene.Boolean(required=True)
-
-class CreateWorker(graphene.Mutation):
-    worker = graphene.Field(OccupationType)
-
-    # class Input:
-    #     name = graphene.String()
-        # companyName = graphene.String()
-        # positionName = graphene.String()
-        # hireDate = graphene.Date()
-        # fireDate = graphene.Date()
-        # salary = graphene.Int()
-        # fraction = graphene.Int()
-        # base = graphene.Int()
-        # advance = graphene.Int()
-        # by_hours = graphene.Boolean()
-
-#     def mutate_and_get_payload(self, root, info, **input):
-#         worker = Workers(
-#             name=input.get('name')
-#         )
-
-#         worker.save()
-
-#         return CreateWorker(worker=worker)
-
-# class Mutation(graphene.ObjectType):
-#     create_worker = CreateWorker.Field()
-    class Arguments:
-      input = WorkersInput(required=True)
-    #   ok = graphene.Boolean()
-      OccupationType
-
-    @staticmethod
-    def mutate(root, info, input=None):
-        # ok = True
-        worker_instance = Workers(
-          name = input.name,
-          companyName = input.companyName,
-          position_name = input.position_name,
-          hire_date = input.hireDate,
-          fire_date = input.fireDate,
-          salary = input.salary,
-          fraction = input.fraction,
-          base = input.base,
-          advance = input.advance,
-          by_hours = input.by_hours
-        )
-        worker_instance.save()
-        return CreateWorker(worker=worker_instance)
-
-class Mutation(graphene.ObjectType):
-    create_worker = CreateWorker.Field()
 
 class Query(ObjectType):
     getOccupation = graphene.Field(OccupationType, id=graphene.Int())
@@ -87,6 +20,70 @@ class Query(ObjectType):
     def resolve_getOccupations(self, info, **kwargs):
         return Workers.objects.all()
 
-    
+
+class WorkersInput(graphene.InputObjectType):
+    name = graphene.String()
+    companyName = graphene.String()
+    position_name = graphene.String()
+    hireDate = graphene.Date()
+    fireDate = graphene.Date()
+    salary = graphene.Int()
+    fraction = graphene.Int()
+    base = graphene.Int()
+    advance = graphene.Int()
+    by_hours = graphene.Boolean()
+
+class addOccupation(graphene.Mutation):
+    class Arguments:
+      input = WorkersInput(required=True)
+
+    ok = graphene.Boolean()
+    worker = graphene.Field(OccupationType)
+
+    @staticmethod
+    def mutate(root, info, input=None):
+        ok = True
+        worker_instance = Workers(
+            name=input.name,
+            companyName=input.companyName,
+            position_name=input.position_name,
+            hire_date=input.hireDate,
+            fire_date=input.fireDate,
+            salary=input.salary,
+            fraction=input.fraction,
+            base=input.base,
+            advance=input.advance,
+            by_hours=input.by_hours
+        )
+        worker_instance.save()
+        return addOccupation(worker=worker_instance)
+
+
+class updateOccupation(graphene.Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+        input = WorkersInput(required=True)
+
+    ok = graphene.Boolean()
+    worker = graphene.Field(OccupationType)
+
+    @staticmethod
+    def mutate(root, info, id, input=None):
+        ok = False
+        worker_instance = Workers.objects.get(pk=id)
+        if worker_instance:
+            ok = True
+            worker_instance.salary = input.salary
+            worker_instance.fraction = input.fraction
+            worker_instance.base = input.base
+            worker_instance.advance = input.advance
+            worker_instance.save()
+            return updateOccupation(ok=ok, worker=worker_instance)
+        return updateOccupation(ok=ok, worker=None)
+
+
+class Mutation(graphene.ObjectType):
+    add_occupation = addOccupation.Field()
+    update_occupation = updateOccupation.Field()
+
 schema = graphene.Schema(query=Query, mutation=Mutation)
-# schema = graphene.Schema(query=Query)

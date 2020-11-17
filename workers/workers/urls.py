@@ -18,12 +18,12 @@ from django.urls import path
 from django.conf.urls import include, url
 from graphene_django.views import GraphQLView
 from work.schema import schema
+from django.views.decorators.csrf import csrf_exempt
 
 
 urlpatterns = [
     url(r'^listWorkers/', include('listWorkers.urls')),
     url(r'^work/', include('work.urls')),
     path('admin/', admin.site.urls),
-    path('api/', GraphQLView.as_view(graphiql=True)),
-    # url(r'^(?P<resolve_getOccupation[0-9]+)/vote/$', schema.resolve_getOccupation, name='vote')
+    path('api/', csrf_exempt(GraphQLView.as_view(graphiql=True)))
 ]

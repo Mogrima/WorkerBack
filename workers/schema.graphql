@@ -1,0 +1,46 @@
+type Occupation {
+    name: String!,
+    companyName: String!,
+    positionName: String!,
+    hireDate: Date!,
+    fireDate: Date,
+    salary: Int!,
+    fraction: Int!,
+    base: Int!,
+    advance: Int!,
+    by_hours: Boolean!
+}
+
+type Query {
+    getOccupation(id: ID!): Occupation
+    getOccupations(): [Occupation]
+}
+
+input WorkersInput {
+    id: ID
+    name: String!
+    companyName: String!,
+    positionName: String!,
+    hireDate: Date!,
+    fireDate: Date,
+    salary: Int!,
+    fraction: Int!,
+    base: Int!,
+    advance: Int!,
+    by_hours: Boolean!
+}
+
+type  WorkersPayload {  
+    ok: Boolean
+    worker: Workers
+}
+
+  type Mutation {
+    createWorker(input: WorkersInput) : WorkersPayload
+    updateWorker(id: ID!, input: WorkersInput) : WorkersPayload
+}
+
+schema {  
+  query: Query
+  mutation: Mutation
+}
